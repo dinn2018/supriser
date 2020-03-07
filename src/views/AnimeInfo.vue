@@ -4,7 +4,13 @@
       <el-col :span="20">
         <el-row class="anime-info">
           <el-col :lg="3">
-            <Poster @click="selectPoster" :url="poster" :fit="fit" @focus="focusPoster"></Poster>
+            <Poster
+              v-if="poster != ''"
+              @click="selectPoster"
+              :url="poster"
+              :fit="fit"
+              @focus="focusPoster"
+            ></Poster>
           </el-col>
           <el-col :lg="9">
             <el-row>
@@ -80,7 +86,7 @@ export default class AnimeInfo extends Vue {
     id: 0,
     name: "",
     director: "",
-    poster: "/static/images/a",
+    poster: "",
     region: "",
     lang: "",
     description: "",
