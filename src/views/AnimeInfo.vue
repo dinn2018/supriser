@@ -4,13 +4,7 @@
       <el-col :span="20">
         <el-row class="anime-info">
           <el-col :lg="3">
-            <Poster
-              v-if="poster != ''"
-              @click="selectPoster"
-              :url="poster"
-              :fit="fit"
-              @focus="focusPoster"
-            ></Poster>
+            <Poster @click="selectPoster" :url="poster" :fit="fit" @focus="focusPoster"></Poster>
           </el-col>
           <el-col :lg="9">
             <el-row>
@@ -96,12 +90,13 @@ export default class AnimeInfo extends Vue {
   private fit = "fit";
   private seriesList: AnimeSeries[] = [];
 
-  async created() {
-    this.anime = await AnimeAPI.get(this, parseInt(this.$route.params.id));
-    this.seriesList = await AnimeAPI.seriesList(
-      this,
-      parseInt(this.$route.params.id)
-    );
+  created() {
+    AnimeAPI.get(this, parseInt(this.$route.params.id)).then(anime => {
+      this.anime = anime;
+    });
+    AnimeAPI.seriesList(this, parseInt(this.$route.params.id)).then(list => {
+      this.seriesList = list;
+    });
   }
 
   get poster() {
