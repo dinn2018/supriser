@@ -1,0 +1,64 @@
+<template>
+  <div @click="selected">
+    <el-col>
+      <el-row>
+        <Poster :url="url" @focus="focusImage"></Poster>
+      </el-row>
+      <el-row>
+        <el-col class="anime-name">{{anime.name}}</el-col>
+      </el-row>
+      <el-row>
+        <el-col class="anime-director">导演: {{anime.director}}</el-col>
+      </el-row>
+    </el-col>
+  </div>
+</template>
+<script lang="ts">
+import { Vue, Prop, Component } from "vue-property-decorator";
+import Poster from "./Poster.vue";
+import { HOSTURL } from "../config/config";
+import { Anime } from "../models/anime";
+
+@Component({ components: { Poster } })
+export default class AnimeCover extends Vue {
+  @Prop() private anime!: Anime;
+  private url = "";
+
+  created() {
+    this.url = `${HOSTURL}${this.anime.poster}`;
+  }
+
+  async selected() {
+    this.$router.push({
+      name: "AnimeInfo",
+      params: { id: `${this.anime.id}` }
+    });
+  }
+
+  async focusImage() {
+    //TODO
+  }
+}
+</script>
+
+<style lang="scss">
+.anime-director {
+  color: grey;
+  font-size: 14px;
+  padding-bottom: 30px;
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anime-name {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+}
+</style>
