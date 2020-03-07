@@ -4,11 +4,12 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
+  {
+    path: '/',
+    // 方法接收 目标路由 作为参数
+    // return 重定向的 字符串路径/路径对象
+    redirect: '/animes/pages/1',
+  },
   {
     path: '/animes/pages/:pageNum',
     name: 'Anime',
