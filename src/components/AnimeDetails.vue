@@ -1,10 +1,15 @@
 <template>
   <el-col :span="24">
-    <el-row :span="24" class="anime-info">
-      <el-col :lg="3">
-        <Poster :url="poster" :fit="fit" @click="selectPoster"></Poster>
+    <el-row :span="24" class="anime-info" type="flex">
+      <el-col :lg="4" :md="8" :xs="24" style="margin-right:15px;">
+        <Poster
+          :url="poster"
+          :fit="fit"
+          @click="selectPoster"
+          style="border-radius:10px; width:100%;height:300px;"
+        ></Poster>
       </el-col>
-      <el-col :lg="20">
+      <el-col :lg="20" :md="16" :xs="24">
         <el-row>
           {{anime.name}}
           <span class="anime-status">{{anime.status}}</span>
@@ -44,7 +49,7 @@ import { HOSTURL } from "../config/config";
 import { Anime } from "../models/anime";
 
 @Component({ components: { Poster } })
-export default class SearchingAnimeCover extends Vue {
+export default class AnimeDetails extends Vue {
   @Prop() private anime!: Anime;
   private url = "";
   private fit = "fit";
@@ -106,15 +111,5 @@ export default class SearchingAnimeCover extends Vue {
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-.series {
-  margin-top: 20px;
-  border-radius: 5px;
-  font-size: 20px;
-  background-color: #11ad1e;
-  font-weight: 700;
-  color: #f8f1f1;
-  text-align: center;
 }
 </style>

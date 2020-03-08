@@ -6,8 +6,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    // 方法接收 目标路由 作为参数
-    // return 重定向的 字符串路径/路径对象
     redirect: '/animes/pages/1',
   },
   {
@@ -22,8 +20,8 @@ const routes = [
   },
   {
     path: '/animes/:animeID/series/:seriesID',
-    name: 'AnimeSeries',
-    component: () => import('../views/SeriesView.vue')
+    name: 'AnimeVideo',
+    component: () => import('../views/VideoView.vue')
   },
   {
     path: '/animes/:id',

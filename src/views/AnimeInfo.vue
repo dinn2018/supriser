@@ -2,44 +2,21 @@
   <div>
     <el-row type="flex" justify="center">
       <el-col :span="20">
-        <el-row class="anime-info">
-          <el-col :lg="3">
-            <Poster @click="selectPoster" :url="poster" :fit="fit" @focus="focusPoster"></Poster>
-          </el-col>
-          <el-col :lg="9">
-            <el-row>
-              {{anime.name}}
-              <span class="anime-status">{{anime.status}}</span>
-            </el-row>
-            <el-row>
-              <el-col class="anime-property-name">
-                地区:
-                <span class="anime-property">{{anime.region}}</span>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col class="anime-property-name">
-                导演:
-                <span class="anime-property">{{anime.director}}</span>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col class="anime-property-name">
-                更新:
-                <span class="anime-property">{{updateTime}}</span>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col class="anime-property-name">
-                简介:
-                <span class="anime-property">{{anime.description}}</span>
-              </el-col>
-            </el-row>
-          </el-col>
-        </el-row>
+        <AnimeDetails v-if="anime.id" :anime="anime"></AnimeDetails>
         <el-row>
-          <el-card class="samemargintop">
-            <el-row class="largefont">播放列表</el-row>
+          <el-card style="margin-top:20px;">
+            <el-row class="largefont" type="flex">
+              <el-col :xs="16" :lg="20" :md="20">播放列表</el-col>
+              <el-col :xs="8" :lg="4" :md="4" style="text-align:right;">
+                <div @click="orderChangeds">
+                  排序
+                  <span>
+                    <font-awesome-icon v-if="!orderUp" icon="arrow-down" />
+                    <font-awesome-icon v-else icon="arrow-up" />
+                  </span>
+                </div>
+              </el-col>
+            </el-row>
             <el-divider></el-divider>
             <el-row :gutter="20">
               <el-col
@@ -61,6 +38,17 @@
             </el-row>
           </el-card>
         </el-row>
+        <el-row type="flex" justify="center">
+          <el-pagination
+            style="margin-bottom: 20px;"
+            :page-size="pageSize"
+            :pager-count="7"
+            :current-page="pageNum"
+            @current-change="onPageChanged"
+            layout="prev, pager, next"
+            :total="total"
+          ></el-pagination>
+        </el-row>
       </el-col>
     </el-row>
   </div>
@@ -69,11 +57,11 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Anime, AnimeSeries } from "../models/anime";
 import { HOSTURL } from "../config/config";
-import Poster from "../components/Poster.vue";
+import AnimeDetails from "../components/AnimeDetails.vue";
 import AnimeAPI from "../api/anime-api";
 
 @Component({
-  components: { Poster }
+  components: { AnimeDetails }
 })
 export default class AnimeInfo extends Vue {
   private anime: Anime = {
@@ -89,14 +77,29 @@ export default class AnimeInfo extends Vue {
   };
   private fit = "fit";
   private seriesList: AnimeSeries[] = [];
+  private orderUp = false;
+  private total = 0;
+  private pageSize = 48;
+  private pageNum = 1;
+
+  getSeriesList() {
+    AnimeAPI.seriesList(
+      this,
+      this.pageSize,
+      this.pageNum - 1,
+      parseInt(this.$route.params.id),
+      this.orderUp
+    ).then(res => {
+      this.seriesList = res.data;
+      this.total = res.count;
+    });
+  }
 
   created() {
-    AnimeAPI.get(this, parseInt(this.$route.params.id)).then(anime => {
+    AnimeAPI.getAnime(this, parseInt(this.$route.params.id)).then(anime => {
       this.anime = anime;
     });
-    AnimeAPI.seriesList(this, parseInt(this.$route.params.id)).then(list => {
-      this.seriesList = list;
-    });
+    this.getSeriesList();
   }
 
   get poster() {
@@ -124,44 +127,29 @@ export default class AnimeInfo extends Vue {
     return seriesNum;
   }
 
-  async selectSeries(series: AnimeSeries) {
+  selectSeries(series: AnimeSeries) {
     this.$router.push({
-      name: "AnimeSeries",
-      params: { animeID: `${this.anime.id}`, seriesID: `${series.id}` }
+      name: "AnimeVideo",
+      params: { animeID: `${this.anime.id}`, seriesID: `${series.id}` },
+      query: { pageNum: `${this.pageNum}` }
     });
+  }
+
+  onPageChanged(page: number) {
+    if (page != this.pageNum) {
+      this.pageNum = page;
+      this.getSeriesList();
+    }
+  }
+
+  orderChangeds() {
+    this.orderUp = !this.orderUp;
+    this.getSeriesList();
   }
 }
 </script>
 
 <style lang="scss">
-.anime-info {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-.anime-status {
-  color: green;
-  font-size: 12px;
-}
-.anime-property-name {
-  color: #333333;
-  font-size: 14px;
-  padding-top: 10px;
-  // padding-bottom: 10px;
-}
-
-.anime-property {
-  color: #666666;
-  font-size: 14px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.anime-description {
-  color: #333333;
-  font-size: 14px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 .active-series {
   margin-bottom: 20px;
   margin-left: 20px;

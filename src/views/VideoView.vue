@@ -3,16 +3,14 @@
     <el-row type="flex" justify="center">
       <el-col :span="20">
         <el-row style="margin-top:20px;">
-          <el-col :span="16">
+          <el-col>
             <Video v-if="currentSeries.url != ''" :url="currentSeries.url" :poster="poster"></Video>
           </el-col>
-          <el-col :span="8">
+          <el-col style="margin-top:20px;">
             <el-row>
               <el-col class="anime-series-name">
                 {{anime.name}}
-                <span
-                  style="font-size:12px;color:#cccccc"
-                >{{anime.region}}/{{anime.postYear}}</span>
+                <span style="font-size:12px;color:#11ad1e;">第{{currentSeries.num}}集</span>
               </el-col>
             </el-row>
             <el-divider></el-divider>
@@ -20,11 +18,11 @@
               <el-col
                 v-for="(series,i) in seriesList"
                 v-bind:key="`series--${i}`"
-                :xs="24"
-                :sm="12"
-                :md="6"
-                :lg="6"
-                :xl="6"
+                :xs="8"
+                :sm="8"
+                :md="4"
+                :lg="3"
+                :xl="3"
               >
                 <el-card
                   v-bind:class="{'active-series':series.num == currentSeries.num,'inactive-series':series.num != currentSeries.num }"
@@ -34,6 +32,17 @@
                 >{{compute(series.num)}}</el-card>
               </el-col>
             </el-row>
+          </el-col>
+          <el-col type="flex" align="middle">
+            <el-pagination
+              style="margin-bottom: 20px;"
+              :page-size="pageSize"
+              :pager-count="7"
+              :current-page="pageNum"
+              @current-change="onPageChanged"
+              layout="prev, pager, next"
+              :total="total"
+            ></el-pagination>
           </el-col>
         </el-row>
       </el-col>
@@ -51,12 +60,12 @@ import { HOSTURL } from "../config/config";
 @Component({
   components: { AnimeCover, Video }
 })
-export default class SeriesView extends Vue {
+export default class VideoView extends Vue {
   private anime: Anime = {
     id: 0,
     name: "",
     director: "",
-    poster: "/static/images/a",
+    poster: "",
     region: "",
     lang: "",
     description: "",
@@ -65,6 +74,10 @@ export default class SeriesView extends Vue {
   };
   private fit = "fit";
   private seriesList: AnimeSeries[] = [];
+  private orderUp = false;
+  private total = 0;
+  private pageSize = 48;
+  private pageNum = 1;
   private currentSeries: AnimeSeries = {
     id: 0,
     url: "",
@@ -73,19 +86,16 @@ export default class SeriesView extends Vue {
   };
 
   async created() {
-    AnimeAPI.series(this, parseInt(this.$route.params.seriesID)).then(
-      series => {
-        this.currentSeries = series;
-      }
-    );
-    AnimeAPI.get(this, parseInt(this.$route.params.animeID)).then(anime => {
-      this.anime = anime;
+    this.currentSeries.id = parseInt(this.$route.params.seriesID);
+    AnimeAPI.series(this, this.currentSeries.id).then(series => {
+      this.currentSeries = series;
     });
-    AnimeAPI.seriesList(this, parseInt(this.$route.params.animeID)).then(
-      list => {
-        this.seriesList = list;
+    AnimeAPI.getAnime(this, parseInt(this.$route.params.animeID)).then(
+      anime => {
+        this.anime = anime;
       }
     );
+    this.getSeriesList();
   }
 
   compute(seriesNum: number) {
@@ -102,6 +112,26 @@ export default class SeriesView extends Vue {
   async selectSeries(series: AnimeSeries) {
     if (series.num != this.currentSeries.num) this.currentSeries = series;
   }
+
+  getSeriesList() {
+    AnimeAPI.seriesList(
+      this,
+      this.pageSize,
+      this.pageNum - 1,
+      parseInt(this.$route.params.animeID),
+      this.orderUp
+    ).then(res => {
+      this.seriesList = res.data;
+      this.total = res.count;
+    });
+  }
+
+  async onPageChanged(page: number) {
+    if (page != this.pageNum) {
+      this.pageNum = page;
+      this.getSeriesList();
+    }
+  }
 }
 </script>
 
@@ -109,6 +139,7 @@ export default class SeriesView extends Vue {
 .anime-series-name {
   margin-left: 20px;
   font-weight: 800;
+  font-size: 20px;
 }
 
 .inactive-series {

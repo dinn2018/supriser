@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <el-image
-      @click="click"
-      style="border-radius:10px; width:150px;height:220px;"
-      :src="url"
-      :fit="fit"
-    ></el-image>
-  </div>
+  <el-image @click="click" :src="url" :fit="fit"></el-image>
 </template>
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";

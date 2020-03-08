@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" justify="center">
       <el-col :span="20">
-        <el-card class="samemargintop">
+        <el-card style="margin-top:20px;">
           <el-row>{{keyword}}</el-row>
           <el-divider></el-divider>
           <el-col>
@@ -16,15 +16,15 @@
               :lg="4"
               :xl="2"
             >
-              <SearchingAnimeCover :anime="anime"></SearchingAnimeCover>
+              <AnimeDetails :anime="anime"></AnimeDetails>
             </el-row>
           </el-col>
         </el-card>
       </el-col>
     </el-row>
-    <!-- <el-row type="flex" justify="center">
+    <el-row type="flex" justify="center">
       <el-pagination
-        class="samemargintop pagination"
+        style="margin-bottom: 20px;"
         :page-size="pageSize"
         :pager-count="7"
         :current-page="pageNum"
@@ -32,19 +32,19 @@
         layout="prev, pager, next"
         :total="total"
       ></el-pagination>
-    </el-row>-->
+    </el-row>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Anime } from "../models/anime";
 import AnimeAPI from "../api/anime-api";
-import SearchingAnimeCover from "../components/SearchingAnimeCover.vue";
+import AnimeDetails from "../components/AnimeDetails.vue";
 import { Route } from "vue-router";
 import { Dictionary } from "vue-router/types/router";
 
 @Component({
-  components: { SearchingAnimeCover }
+  components: { AnimeDetails }
 })
 export default class SearchingAnimeView extends Vue {
   private animes: Anime[] = [];
@@ -57,27 +57,25 @@ export default class SearchingAnimeView extends Vue {
   async onRouteChanged(route: Route) {
     this.pageNum = parseInt(route.params.pageNum);
     this.keyword = (route.query as Dictionary<string>)["keyword"];
-    this.animes = await AnimeAPI.list(
-      this,
-      this.pageSize,
-      this.pageNum - 1,
-      this.keyword
+    this.getSearchingAnimes();
+  }
+
+  getSearchingAnimes() {
+    AnimeAPI.list(this, this.pageSize, this.pageNum - 1, this.keyword).then(
+      res => {
+        this.animes = res.data;
+        this.total = res.count;
+      }
     );
   }
 
-  async created() {
+  created() {
     this.pageNum = parseInt(this.$route.params.pageNum);
-    this.total = await AnimeAPI.count(this);
     this.keyword = (this.$route.query as Dictionary<string>)["keyword"];
-    this.animes = await AnimeAPI.list(
-      this,
-      this.pageSize,
-      this.pageNum - 1,
-      this.keyword
-    );
+    this.getSearchingAnimes();
   }
 
-  async onPageChanged(page: number) {
+  onPageChanged(page: number) {
     if (page != this.pageNum) {
       this.$router.push({
         name: "SearchingAnime",

@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ElementUI from 'element-ui';
 import VueResource from 'vue-resource';
@@ -17,7 +17,7 @@ Vue.use(hls)
 Vue.use(VueVideoPlayer)
 Vue.use(ElementUI);
 Vue.use(VueResource);
-library.add(faSearch)
+library.add(faSearch, faArrowDown, faArrowUp);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

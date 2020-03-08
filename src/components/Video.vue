@@ -53,7 +53,7 @@ export default class Video extends Vue {
     ],
     hls: true,
     poster: this.poster, // 你的封面地址
-    width: 300, // 播放器宽度
+    width: "100%", // 播放器宽度
     notSupportedMessage: "此视频暂时无法播放，请稍后再试",
     controlBar: {
       timeDivider: true,

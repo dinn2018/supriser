@@ -2,7 +2,7 @@
   <div @click="selected">
     <el-col>
       <el-row>
-        <Poster :url="url" @focus="focusImage"></Poster>
+        <Poster :url="url" @focus="focusImage" style="border-radius:10px; width:100%;height:250px;"></Poster>
       </el-row>
       <el-row>
         <el-col class="anime-name">{{anime.name}}</el-col>

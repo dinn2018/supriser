@@ -6,9 +6,9 @@
       <el-col :span="4">
         <router-link to="/animes/pages/1" bold id="title-text-main">惊奇动漫社</router-link>
       </el-col>
-      <el-col :span="2">
+      <!-- <el-col :span="2">
         <router-link to="/animes/pages/1" class="title-text">动漫</router-link>
-      </el-col>
+      </el-col>-->
       <!-- <el-col> -->
       <el-input placeholder="输入关键词" v-model="keyword" @change="searchKeyword">
         <font-awesome-icon
@@ -59,6 +59,7 @@ export default class App extends Vue {
   margin: 0;
   color: white;
 }
+
 a {
   text-decoration: none;
 }
