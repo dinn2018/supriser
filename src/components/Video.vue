@@ -38,7 +38,7 @@ export default class Video extends Vue {
 
   private playerOptions = {
     playbackRates: [0.5, 1.0, 1.5, 2.0],
-    autoplay: false,
+    autoplay: true,
     muted: false,
     loop: false,
     preload: "auto",
