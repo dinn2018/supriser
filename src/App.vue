@@ -16,7 +16,6 @@
           </el-input>
         </el-row>
       </el-col>
-
       <el-col :span="4"></el-col>
     </el-row>
     <router-view />
@@ -31,6 +30,7 @@ export default class App extends Vue {
 
   searchKeyword(val: string) {
     if (val != "") {
+      this.keyword = "";
       this.$router.push({
         name: "SearchingAnime",
         params: { pageNum: "1" },

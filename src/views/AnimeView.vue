@@ -95,14 +95,13 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row type="flex" justify="center">
+    <el-row type="flex" justify="center" v-if="total > pageSize">
       <el-pagination
-        style="margin-bottom: 20px;  margin-top: 20px;"
+        style="margin-bottom: 1rem;  margin-top: 1rem;"
         :page-size="pageSize"
         :pager-count="7"
         :current-page="pageNum"
         @current-change="onPageChanged"
-        layout="prev, pager, next"
         :total="total"
       ></el-pagination>
     </el-row>
@@ -239,7 +238,7 @@ export default class AnimeView extends Vue {
 }
 
 .el-pager li {
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .hover-properties {

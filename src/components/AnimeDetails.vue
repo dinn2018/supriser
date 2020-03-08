@@ -12,7 +12,7 @@
           :url="poster"
           :fit="fit"
           @click="selectPoster"
-          style="border-radius:10px; max-width:250px;min-width:200px; height:300px;"
+          style="border-radius:10px; max-width:250px;min-width:200px; min-height:300px; max-height:350px;"
         ></Poster>
       </el-col>
       <el-col :lg="17" :md="16" :sm="16" :xs="10">
@@ -83,6 +83,7 @@ export default class AnimeDetails extends Vue {
   }
 
   async selectPoster() {
+    console.log("selectPoster");
     this.$router.push({
       name: "AnimeInfo",
       params: { id: `${this.anime.id}` }
@@ -117,5 +118,8 @@ export default class AnimeDetails extends Vue {
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 </style>

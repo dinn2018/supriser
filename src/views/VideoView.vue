@@ -33,14 +33,13 @@
               </el-col>
             </el-row>
           </el-col>
-          <el-col type="flex" align="middle">
+          <el-col type="flex" align="middle" v-if="total > pageSize">
             <el-pagination
-              style="margin-bottom: 20px;"
+              style="margin-bottom: 1rem;margin-top:1rem;"
               :page-size="pageSize"
               :pager-count="7"
               :current-page="pageNum"
               @current-change="onPageChanged"
-              layout="prev, pager, next"
               :total="total"
             ></el-pagination>
           </el-col>
@@ -166,5 +165,9 @@ export default class VideoView extends Vue {
   text-align: center;
   line-height: 45px;
   cursor: pointer;
+}
+
+.el-pager li {
+  font-size: 1rem;
 }
 </style>
