@@ -40,7 +40,7 @@
         </el-row>
         <el-row type="flex" justify="center">
           <el-pagination
-            style="margin-bottom: 20px;"
+            style="margin-bottom: 20px;margin-top: 20px;"
             :page-size="pageSize"
             :pager-count="7"
             :current-page="pageNum"
