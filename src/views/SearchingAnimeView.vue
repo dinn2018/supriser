@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" justify="center" style="margin-botttom:1rem">
       <el-col :span="20">
-        <el-card style="margin-top:20px;">
+        <el-card style="margin-bottom:2rem;margin-top:2rem;">
           <el-row>{{keyword}}</el-row>
           <el-divider></el-divider>
           <el-col>
@@ -89,8 +89,5 @@ export default class SearchingAnimeView extends Vue {
 <style lang="scss">
 .el-pager li {
   font-size: 1rem;
-}
-.pagination {
-  padding-bottom: 40px;
 }
 </style>
