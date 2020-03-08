@@ -5,7 +5,7 @@
         <Poster
           :url="url"
           @focus="focusImage"
-          style="border-radius:10px; width:100%;min-height:200px; max-height:250px;"
+          style="border-radius:10px; width:100%; height:230px; margin-bottom:10px;"
         ></Poster>
       </el-row>
       <el-row>
@@ -47,19 +47,17 @@ export default class AnimeCover extends Vue {
 
 <style lang="scss">
 .anime-director {
+  padding-bottom: 20px;
   color: grey;
   font-size: 0.7em;
-  padding-bottom: 30px;
-  display: inline;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline;
 }
 
 .anime-name {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: inline;
+  margin-bottom: 10px;
   white-space: nowrap;
   overflow: hidden;
   font-size: 1em;
