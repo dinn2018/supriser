@@ -1,5 +1,5 @@
 <template>
-  <el-image @click="click" :src="url" :fit="fit"></el-image>
+  <el-image style="cursor:pointer;" @click="click" :src="url" :fit="fit"></el-image>
 </template>
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
