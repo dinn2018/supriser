@@ -2,7 +2,11 @@
   <div @click="selected">
     <el-col>
       <el-row>
-        <Poster :url="url" @focus="focusImage" style="border-radius:10px; width:100%;height:250px;"></Poster>
+        <Poster
+          :url="url"
+          @focus="focusImage"
+          style="border-radius:10px; width:100%;min-height:200px; max-height:250px;"
+        ></Poster>
       </el-row>
       <el-row>
         <el-col class="anime-name">{{anime.name}}</el-col>
@@ -44,7 +48,7 @@ export default class AnimeCover extends Vue {
 <style lang="scss">
 .anime-director {
   color: grey;
-  font-size: 14px;
+  font-size: 0.7em;
   padding-bottom: 30px;
   display: inline;
   white-space: nowrap;
@@ -58,7 +62,7 @@ export default class AnimeCover extends Vue {
   display: inline;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 1em;
   text-overflow: ellipsis;
 }
 </style>
