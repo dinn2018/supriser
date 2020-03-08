@@ -88,11 +88,8 @@ export default class SearchingAnimeView extends Vue {
 </script>
 
 <style lang="scss">
-.samemargintop {
-  margin-top: 20px;
-}
 .el-pager li {
-  font-size: 18px;
+  font-size: 1em;
 }
 .pagination {
   padding-bottom: 40px;

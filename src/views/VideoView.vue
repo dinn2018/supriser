@@ -10,7 +10,7 @@
             <el-row>
               <el-col class="anime-series-name">
                 {{anime.name}}
-                <span style="font-size:12px;color:#11ad1e;">第{{currentSeries.num}}集</span>
+                <span style="font-size:0.7em;color:#11ad1e;">第{{currentSeries.num}}集</span>
               </el-col>
             </el-row>
             <el-divider></el-divider>
@@ -139,14 +139,14 @@ export default class VideoView extends Vue {
 .anime-series-name {
   margin-left: 20px;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 
 .inactive-series {
   margin-bottom: 20px;
   margin-left: 20px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 1em;
   background-color: #0c110c;
   font-weight: 700;
   color: #f8f1f1;
@@ -159,7 +159,7 @@ export default class VideoView extends Vue {
   margin-bottom: 20px;
   margin-left: 20px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 1em;
   background-color: #11ad1e;
   font-weight: 700;
   color: #f8f1f1;

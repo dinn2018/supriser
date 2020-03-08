@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <!-- <Nav></Nav> -->
     <el-row id="nav" type="flex" justify="center" align="middle">
       <el-col :span="4"></el-col>
-      <el-col :span="4">
-        <router-link to="/animes/pages/1" bold id="title-text-main">惊奇动漫社</router-link>
+      <el-col>
+        <el-row type="flex" justify="left" align="middle">
+          <el-col :xs="13">
+            <router-link to="/animes/pages/1" bold id="title-text-main">惊奇动漫社</router-link>
+          </el-col>
+          <el-input placeholder="输入关键词" v-model="keyword" @change="searchKeyword">
+            <font-awesome-icon
+              slot="prefix"
+              style="color: grey;padding-top: 12px; padding-left:5px;"
+              icon="search"
+            />
+          </el-input>
+        </el-row>
       </el-col>
-      <!-- <el-col :span="2">
-        <router-link to="/animes/pages/1" class="title-text">动漫</router-link>
-      </el-col>-->
-      <!-- <el-col> -->
-      <el-input placeholder="输入关键词" v-model="keyword" @change="searchKeyword">
-        <font-awesome-icon
-          slot="prefix"
-          style="color: grey;padding-top: 12px; padding-left:5px;"
-          icon="search"
-        />
-      </el-input>
-      <!-- </el-col> -->
+
       <el-col :span="4"></el-col>
     </el-row>
     <router-view />
@@ -50,7 +49,7 @@ export default class App extends Vue {
 }
 
 #title-text-main {
-  font-size: 27px;
+  font-size: 1.5em;
   color: yellow;
 }
 

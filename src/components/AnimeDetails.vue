@@ -1,15 +1,21 @@
 <template>
-  <el-col :span="24">
-    <el-row :span="24" class="anime-info" type="flex">
-      <el-col :lg="4" :md="8" :xs="24" style="margin-right:15px;">
+  <el-col>
+    <el-row class="anime-info" justify="left">
+      <el-col
+        :lg="7"
+        :md="6"
+        :sm="6"
+        :xs="9"
+        style="margin-right:10px; max-width:250px;min-width:200px; "
+      >
         <Poster
           :url="poster"
           :fit="fit"
           @click="selectPoster"
-          style="border-radius:10px; width:100%;height:300px;"
+          style="border-radius:10px; max-width:250px;min-width:200px; height:300px;"
         ></Poster>
       </el-col>
-      <el-col :lg="20" :md="16" :xs="24">
+      <el-col :lg="17" :md="16" :sm="16" :xs="10">
         <el-row>
           {{anime.name}}
           <span class="anime-status">{{anime.status}}</span>
@@ -92,7 +98,7 @@ export default class AnimeDetails extends Vue {
 }
 .anime-status {
   color: green;
-  font-size: 12px;
+  font-size: 0.5em;
 }
 .anime-property-name {
   color: #333333;
@@ -102,8 +108,8 @@ export default class AnimeDetails extends Vue {
 
 .anime-property {
   color: #666666;
-  font-size: 14px;
-  padding-top: 10px;
+  font-size: 0.7em;
+  padding-top: 1em;
   padding-bottom: 10px;
 }
 .anime-description {
