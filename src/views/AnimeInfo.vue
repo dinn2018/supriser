@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <el-row type="flex" justify="center">
+  <el-col>
+    <el-row style="margin-top:2rem;" type="flex" justify="center">
       <el-col :span="20">
-        <AnimeDetails v-if="anime.id" :anime="anime"></AnimeDetails>
-        <el-row>
-          <el-card style="margin-top:1rem;">
+        <AnimeDetails style="margin-bottom:2rem;" v-if="anime.id" :anime="anime"></AnimeDetails>
+        <el-row style="margin-bottom:2rem;">
+          <el-card>
             <el-row class="largefont" type="flex">
               <el-col :xs="16" :lg="20" :md="20">播放列表</el-col>
               <el-col :xs="8" :lg="4" :md="4" style="text-align:right;">
@@ -40,7 +40,7 @@
         </el-row>
         <el-row type="flex" justify="center" v-if="total > pageSize">
           <el-pagination
-            style="margin-bottom: 1rem;margin-top: 1rem;"
+            style="margin-bottom: 2rem;"
             :page-size="pageSize"
             :pager-count="7"
             :current-page="pageNum"
@@ -50,7 +50,7 @@
         </el-row>
       </el-col>
     </el-row>
-  </div>
+  </el-col>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";

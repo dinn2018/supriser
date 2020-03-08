@@ -1,12 +1,13 @@
 <template>
   <div>
-    <el-row type="flex" justify="center" style="margin-botttom:1rem">
+    <el-row type="flex" justify="center">
       <el-col :span="20">
         <el-card style="margin-bottom:2rem;margin-top:2rem;">
-          <el-row>{{keyword}}</el-row>
+          <el-row style="font-size:1.2rem;font-weight:700;">{{keyword}}</el-row>
           <el-divider></el-divider>
           <el-col>
             <el-row
+              style="margin-bottom:2rem"
               :span="24"
               v-for="(anime,i) in animes"
               v-bind:key="`${i}`"

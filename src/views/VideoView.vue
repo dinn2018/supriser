@@ -35,7 +35,7 @@
           </el-col>
           <el-col type="flex" align="middle" v-if="total > pageSize">
             <el-pagination
-              style="margin-bottom: 1rem;margin-top:1rem;"
+              style="margin-bottom: 2rem;margin-top:1rem;"
               :page-size="pageSize"
               :pager-count="7"
               :current-page="pageNum"

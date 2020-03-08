@@ -1,6 +1,6 @@
 <template>
   <el-col>
-    <el-row class="anime-info" justify="left">
+    <el-row type="flex" justify="left">
       <el-col
         :lg="7"
         :md="6"
@@ -83,7 +83,6 @@ export default class AnimeDetails extends Vue {
   }
 
   async selectPoster() {
-    console.log("selectPoster");
     this.$router.push({
       name: "AnimeInfo",
       params: { id: `${this.anime.id}` }
@@ -93,10 +92,6 @@ export default class AnimeDetails extends Vue {
 </script>
 
 <style lang="scss">
-.anime-info {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
 .anime-status {
   color: green;
   font-size: 0.5em;
