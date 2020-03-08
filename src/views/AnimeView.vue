@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" justify="center">
       <el-col :span="20">
-        <el-card class="samemargintop">
+        <el-card style="margin-top:2rem;margin-bottom:2rem">
           <el-col>
             <el-row>动漫</el-row>
             <el-divider></el-divider>
@@ -39,7 +39,7 @@
                 </el-row>
               </el-col>
             </el-row>
-            <el-row style="margin-top:40px;margin-bottom:20px" type="flex">
+            <el-row style="margin-top:2rem;margin-bottom:2rem" type="flex">
               <el-col :lg="1" :sm="2" :xs="4">
                 <span class="category">地区</span>
               </el-col>
@@ -78,7 +78,7 @@
     </el-row>
     <el-row type="flex" justify="center">
       <el-col :span="20">
-        <el-card class="samemargintop">
+        <el-card>
           <el-row :gutter="20">
             <el-col
               v-for="(anime,i) in animes"

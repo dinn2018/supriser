@@ -4,7 +4,7 @@
       <el-col :span="20">
         <AnimeDetails v-if="anime.id" :anime="anime"></AnimeDetails>
         <el-row>
-          <el-card style="margin-top:20px;">
+          <el-card style="margin-top:1rem;">
             <el-row class="largefont" type="flex">
               <el-col :xs="16" :lg="20" :md="20">播放列表</el-col>
               <el-col :xs="8" :lg="4" :md="4" style="text-align:right;">

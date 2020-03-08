@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row type="flex" justify="center">
+    <el-row type="flex" justify="center" style="margin-botttom:1rem">
       <el-col :span="20">
         <el-card style="margin-top:20px;">
           <el-row>{{keyword}}</el-row>
@@ -24,7 +24,7 @@
     </el-row>
     <el-row type="flex" justify="center" v-if="total > pageSize">
       <el-pagination
-        style="margin-bottom: 1rem;margin-top:1rem;"
+        style="margin-bottom: 1rem;"
         :page-size="pageSize"
         :pager-count="7"
         :current-page="pageNum"
