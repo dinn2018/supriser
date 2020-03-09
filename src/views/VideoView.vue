@@ -55,6 +55,7 @@ import AnimeAPI from "../api/anime-api";
 import AnimeCover from "../components/AnimeCover.vue";
 import Video from "../components/Video.vue";
 import { HOSTURL } from "../config/config";
+import { Dictionary } from "vue-router/types/router";
 
 @Component({
   components: { AnimeCover, Video }
@@ -85,6 +86,9 @@ export default class VideoView extends Vue {
   };
 
   async created() {
+    const query = this.$route.query as Dictionary<string>;
+    this.pageNum = parseInt(query["pageNum"] as string);
+    this.orderUp = query["orderUp"] == "true";
     this.currentSeries.id = parseInt(this.$route.params.seriesID);
     AnimeAPI.series(this, this.currentSeries.id).then(series => {
       this.currentSeries = series;

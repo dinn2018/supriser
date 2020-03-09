@@ -233,8 +233,8 @@ export default class AnimeView extends Vue {
 .category {
   color: #cccccc;
   padding: 1em;
-  border-radius: 0.1em;
-  font-size: 0.7em;
+  border-radius: 0.1rem;
+  font-size: 0.7rem;
 }
 
 .el-pager li {
@@ -243,7 +243,7 @@ export default class AnimeView extends Vue {
 
 .hover-properties {
   cursor: pointer;
-  font-size: 0.5em;
+  font-size: 0.5rem;
 }
 
 .active-properties {
@@ -251,6 +251,6 @@ export default class AnimeView extends Vue {
   border-radius: 5px;
   color: white;
   padding: 10px;
-  font-size: 0.6em;
+  font-size: 0.6rem;
 }
 </style>

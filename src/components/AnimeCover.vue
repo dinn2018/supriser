@@ -49,7 +49,7 @@ export default class AnimeCover extends Vue {
 .anime-director {
   padding-bottom: 2rem;
   color: grey;
-  font-size: 0.7em;
+  font-size: 0.7rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,7 +60,7 @@ export default class AnimeCover extends Vue {
   margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 1em;
+  font-size: 0.8rem;
   text-overflow: ellipsis;
 }
 </style>

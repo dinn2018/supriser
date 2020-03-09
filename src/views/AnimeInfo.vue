@@ -130,7 +130,7 @@ export default class AnimeInfo extends Vue {
     this.$router.push({
       name: "AnimeVideo",
       params: { animeID: `${this.anime.id}`, seriesID: `${series.id}` },
-      query: { pageNum: `${this.pageNum}` }
+      query: { pageNum: `${this.pageNum}`, orderUp: `${this.orderUp}` }
     });
   }
 
