@@ -75,7 +75,7 @@ export default class AnimeDetails extends Vue {
   get updateTime() {
     const dateTime = new Date(this.anime.updateTime);
     return `${dateTime.getMonth() +
-      1}/${dateTime.getDay()}/${dateTime.getFullYear()} ${dateTime.getHours()}:${dateTime.getMinutes()}`;
+      1}/${dateTime.getDate()}/${dateTime.getFullYear()} ${dateTime.getHours()}:${dateTime.getMinutes()}`;
   }
 
   async focusPoster() {
