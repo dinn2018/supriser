@@ -7,11 +7,12 @@ const routes = [
   {
     path: '/',
     redirect: '/animes/pages/1',
+    meta:{}
   },
   {
     path: '/animes/pages/:pageNum',
     name: 'Anime',
-    component: () => import('../views/AnimeView.vue')
+    component: () => import('../views/AnimeView.vue'),
   },
   {
     path: '/animes/searching/pages/:pageNum',

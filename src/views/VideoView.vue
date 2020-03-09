@@ -96,6 +96,7 @@ export default class VideoView extends Vue {
     AnimeAPI.getAnime(this, parseInt(this.$route.params.animeID)).then(
       anime => {
         this.anime = anime;
+        document.title = anime.name;
       }
     );
     this.getSeriesList();

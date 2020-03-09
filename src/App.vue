@@ -18,7 +18,7 @@
       </el-col>
       <el-col :span="4"></el-col>
     </el-row>
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -27,6 +27,10 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class App extends Vue {
   private keyword = "";
+
+  created() {
+    document.title = "惊奇动漫社";
+  }
 
   searchKeyword(val: string) {
     if (val != "") {

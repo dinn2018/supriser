@@ -165,6 +165,7 @@ export default class AnimeView extends Vue {
   }
 
   created() {
+    document.title = "惊奇动漫社";
     const query = this.$route.query as Dictionary<string>;
     try {
       this.selectedPostYears = JSON.parse(query["postYears"]);

@@ -97,6 +97,7 @@ export default class AnimeInfo extends Vue {
   created() {
     AnimeAPI.getAnime(this, parseInt(this.$route.params.id)).then(anime => {
       this.anime = anime;
+      document.title = anime.name;
     });
     this.getSeriesList();
   }
