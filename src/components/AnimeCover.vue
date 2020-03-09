@@ -12,7 +12,7 @@
         <el-col class="anime-name">{{anime.name}}</el-col>
       </el-row>
       <el-row>
-        <el-col class="anime-director">导演: {{anime.director}}</el-col>
+        <el-col class="anime-director">最近更新: {{updateTime}}</el-col>
       </el-row>
     </el-col>
   </div>
@@ -37,6 +37,12 @@ export default class AnimeCover extends Vue {
       name: "AnimeInfo",
       params: { id: `${this.anime.id}` }
     });
+  }
+
+  get updateTime() {
+    const dateTime = new Date(this.anime.updateTime);
+    return `${dateTime.getMonth() +
+      1}/${dateTime.getDate()}/${dateTime.getFullYear()}`;
   }
 
   async focusImage() {
