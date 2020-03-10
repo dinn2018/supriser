@@ -4,7 +4,7 @@
       <el-col :span="4"></el-col>
       <el-col>
         <el-row type="flex" justify="left" align="middle">
-          <el-col :xs="14">
+          <el-col :xs="16">
             <router-link to="/animes/pages/1" bold id="title-text-main">惊奇动漫社</router-link>
           </el-col>
           <el-input placeholder="输入关键词" v-model="keyword" @change="searchKeyword">
@@ -53,7 +53,7 @@ export default class App extends Vue {
 }
 
 #title-text-main {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: yellow;
 }
 

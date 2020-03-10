@@ -18,14 +18,14 @@
               </el-col>
             </el-row>
             <el-divider></el-divider>
-            <el-row :gutter="20">
+            <el-row :gutter="4">
               <el-col
                 v-for="(series,i) in seriesList"
                 v-bind:key="`series-${i}`"
                 :xs="6"
-                :sm="4"
-                :md="3"
-                :lg="2"
+                :sm="5"
+                :md="4"
+                :lg="3"
                 :xl="2"
               >
                 <el-card
@@ -78,7 +78,7 @@ export default class AnimeInfo extends Vue {
   private seriesList: AnimeSeries[] = [];
   private orderUp = false;
   private total = 0;
-  private pageSize = 48;
+  private pageSize = 40;
   private pageNum = 1;
 
   getSeriesList() {
@@ -151,12 +151,9 @@ export default class AnimeInfo extends Vue {
 
 <style lang="scss">
 .active-series {
-  margin-bottom: 20px;
-  margin-left: 20px;
-  padding-top: 0;
-  padding-bottom: 0;
+  margin-bottom: 4px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 1em;
   background-color: #11ad1e;
   font-weight: 700;
   color: #f8f1f1;
