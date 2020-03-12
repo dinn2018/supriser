@@ -4,12 +4,15 @@
         <loc>http://exanime.tv/sitemap.home.xml</loc>
     </sitemap>
     <sitemap>
-        <loc>http://exanime.tv/sitemap.video.xml</loc>
-    </sitemap>
-    <sitemap>
         <loc>http://exanime.tv/sitemap.animeInfo.xml</loc>
     </sitemap>
     <sitemap>
         <loc>http://exanime.tv/sitemap.animeSeries.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>http://exanime.tv/sitemap.video.recent.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>http://exanime.tv/sitemap.video.xml</loc>
     </sitemap>
 </sitemapindex>
