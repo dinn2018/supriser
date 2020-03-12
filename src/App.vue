@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <el-row id="nav" type="flex" justify="center" align="middle">
-      <el-col :span="4"></el-col>
-      <el-col>
-        <el-row type="flex" justify="left" align="middle">
-          <el-col :xs="12" :lg="4">
+    <el-row id="nav" justify="center" align="middle">
+      <el-col :lg="20" :xs="20" :sm="20" :md="20" justify="center" align="middle">
+        <el-row type="flex" justify="center" align="middle">
+          <el-col :xs="10" :lg="8">
             <router-link to="/animes/pages/1" bold id="title-text-main">EX动漫社</router-link>
           </el-col>
-          <el-col :xs="12" :lg="20">
+          <el-col :xs="14" :lg="16">
             <el-input placeholder="输入关键词" v-model="keyword" @change="searchKeyword">
               <font-awesome-icon
                 slot="prefix"
@@ -18,7 +17,6 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="4"></el-col>
     </el-row>
     <el-row>
       <el-col>
