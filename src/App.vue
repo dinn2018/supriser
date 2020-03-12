@@ -20,7 +20,11 @@
       </el-col>
       <el-col :span="4"></el-col>
     </el-row>
-    <router-view></router-view>
+    <el-row>
+      <el-col>
+        <router-view></router-view>
+      </el-col>
+    </el-row>
     <el-row id="footer" type="flex" justify="center" align="middle">
       <el-col :span="18">
         <el-row>
@@ -71,6 +75,7 @@ export default class App extends Vue {
 }
 
 #footer {
+  font-size: 0.8rem;
   padding-top: 2rem;
   padding-bottom: 1rem;
   background-color: #f5f0f0;
