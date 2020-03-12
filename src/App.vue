@@ -21,6 +21,21 @@
       <el-col :span="4"></el-col>
     </el-row>
     <router-view></router-view>
+    <el-row id="footer" type="flex" justify="center" align="middle">
+      <el-col :span="18">
+        <el-row>
+          本网站提供的最新动漫资源均系收集于各大网站，本网站只提供web页面服务，并不提供影片资源存储，也不参与录制、上传
+          若本站收录的链接无意侵犯了贵司版权，请邮箱联系我们，我们会及时处理相关内容,
+          邮箱: dingleiqxy@gmail.com
+        </el-row>
+        <el-row
+          type="flex"
+          justify="center"
+          align="middle"
+          style="padding:1rem;"
+        >Copyright 2020-2021 exanime.tv All Rights Reserved</el-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -29,10 +44,6 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class App extends Vue {
   private keyword = "";
-
-  created() {
-    document.title = "惊奇动漫社";
-  }
 
   searchKeyword(val: string) {
     if (val != "") {
@@ -59,6 +70,11 @@ export default class App extends Vue {
   color: yellow;
 }
 
+#footer {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  background-color: #f5f0f0;
+}
 .title-text {
   padding: 0;
   margin: 0;

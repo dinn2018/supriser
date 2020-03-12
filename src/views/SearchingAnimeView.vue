@@ -42,6 +42,8 @@ import AnimeAPI from "../api/anime-api";
 import AnimeDetails from "../components/AnimeDetails.vue";
 import { Route } from "vue-router";
 import { Dictionary } from "vue-router/types/router";
+import { Meta } from "../decorators/decorators";
+import { MetaInfo } from "vue-meta";
 
 @Component({
   components: { AnimeDetails }
@@ -53,12 +55,26 @@ export default class SearchingAnimeView extends Vue {
   private pageNum = 1;
   private keyword = "";
 
+  @Meta metaInfo(): MetaInfo {
+    return {
+      title: `动漫搜索`,
+      meta: [
+        {
+          name: "keywords",
+          content: `动漫搜索,在线观看`
+        },
+        {
+          name: "description",
+          content: `搜索最全面的动漫资源，提供内地、日本、欧美等最优质的动漫动画片视频，支持手机观看.`
+        }
+      ]
+    };
+  }
   @Watch("$route")
   async onRouteChanged(route: Route) {
     const page = route.params.pageNum;
-    this.pageNum = parseInt(page || '1');
+    this.pageNum = parseInt(page || "1");
     this.keyword = (route.query as Dictionary<string>)["keyword"];
-    document.title = this.keyword;
     this.getSearchingAnimes();
   }
 
@@ -74,7 +90,6 @@ export default class SearchingAnimeView extends Vue {
   created() {
     this.pageNum = parseInt(this.$route.params.pageNum);
     this.keyword = (this.$route.query as Dictionary<string>)["keyword"];
-    document.title = this.keyword;
     this.getSearchingAnimes();
   }
 

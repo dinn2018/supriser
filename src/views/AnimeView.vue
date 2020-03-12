@@ -109,6 +109,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import { MetaInfo } from "vue-meta";
+import { Meta } from "../decorators/decorators";
 import { Anime } from "../models/anime";
 import AnimeAPI from "../api/anime-api";
 import AnimeCover from "../components/AnimeCover.vue";
@@ -128,10 +130,28 @@ export default class AnimeView extends Vue {
   private selectedPostYears: string[] = [];
   private selectedRegions: string[] = [];
 
+  @Meta metaInfo(): MetaInfo {
+    return {
+      title: "EX动漫社",
+      meta: [
+        { name: "keywords", content: "新番动漫,日本动漫,好看的动漫,漫社" },
+        {
+          name: "“description”",
+          content:
+            "EX动漫社收集整理最新好看的动漫动画片大全，提供内地、日本、欧美等最优质的动漫动画片视频，支持手机观看，致力打造专业在线动漫网站."
+        },
+        {
+          name: "author",
+          content: "Dinn"
+        }
+      ]
+    };
+  }
+
   @Watch("$route")
   async onRouteChanged(route: Route) {
     const page = route.params.pageNum;
-    this.pageNum = parseInt(page || '1');
+    this.pageNum = parseInt(page || "1");
     const query = this.$route.query as Dictionary<string>;
     try {
       this.selectedPostYears = JSON.parse(query["postYears"]);
@@ -166,7 +186,6 @@ export default class AnimeView extends Vue {
   }
 
   created() {
-    document.title = "EX动漫社";
     const query = this.$route.query as Dictionary<string>;
     try {
       this.selectedPostYears = JSON.parse(query["postYears"]);

@@ -54,13 +54,17 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Meta } from "../decorators/decorators";
+import { MetaInfo } from "vue-meta";
 import { Anime, AnimeSeries } from "../models/anime";
 import { HOSTURL } from "../config/config";
 import AnimeDetails from "../components/AnimeDetails.vue";
 import AnimeAPI from "../api/anime-api";
 
 @Component({
-  components: { AnimeDetails }
+  components: {
+    AnimeDetails
+  }
 })
 export default class AnimeInfo extends Vue {
   private anime: Anime = {
@@ -81,6 +85,22 @@ export default class AnimeInfo extends Vue {
   private pageSize = 40;
   private pageNum = 1;
 
+  @Meta metaInfo(): MetaInfo {
+    return {
+      title: `${this.anime.name},${this.anime.name}在线观看`,
+      meta: [
+        {
+          name: "keywords",
+          content: `${this.anime.name},${this.anime}在线观看`
+        },
+        {
+          name: "description",
+          content: `${this.anime.description}`
+        }
+      ]
+    };
+  }
+
   getSeriesList() {
     AnimeAPI.seriesList(
       this,
@@ -97,8 +117,8 @@ export default class AnimeInfo extends Vue {
   created() {
     AnimeAPI.getAnime(this, parseInt(this.$route.params.id)).then(anime => {
       this.anime = anime;
-      document.title = anime.name;
     });
+    this.$meta;
     this.getSeriesList();
   }
 
@@ -112,6 +132,21 @@ export default class AnimeInfo extends Vue {
       1}/${dateTime.getDay()}/${dateTime.getFullYear()} ${dateTime.getHours()}:${dateTime.getMinutes()}`;
   }
 
+  // get metaInfo() {
+  //   return {
+  //     meta: [
+  //       { charset: "utf-8" },
+  //       {
+  //         name: "keywords",
+  //         content: `${this.anime.name},${this.anime.name}在线观看`
+  //       },
+  //       {
+  //         name: "description",
+  //         content: `${this.anime.description}`
+  //       }
+  //     ]
+  //   };
+  // }
   async focusPoster() {
     //TODO
   }

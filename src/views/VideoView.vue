@@ -63,6 +63,8 @@ import AnimeCover from "../components/AnimeCover.vue";
 import Video from "../components/Video.vue";
 import { HOSTURL } from "../config/config";
 import { Dictionary } from "vue-router/types/router";
+import { Meta } from "../decorators/decorators";
+import { MetaInfo } from "vue-meta";
 
 @Component({
   components: { AnimeCover, Video }
@@ -92,10 +94,26 @@ export default class VideoView extends Vue {
     animeID: 0
   };
 
+  @Meta metaInfo(): MetaInfo {
+    return {
+      title: `${this.anime.name} 第${this.currentSeries.num}集,${this.anime.name} 第${this.currentSeries.num}集在线观看`,
+      meta: [
+        {
+          name: "keywords",
+          content: `${this.anime.name} 第${this.currentSeries.num}集,${this.anime.name} 第${this.currentSeries.num}集在线观看`
+        },
+        {
+          name: "description",
+          content: `${this.anime.description}`
+        }
+      ]
+    };
+  }
+
   async created() {
     const query = this.$route.query as Dictionary<string>;
     const page = query["pageNum"] as string;
-    this.pageNum = parseInt(page || '1');
+    this.pageNum = parseInt(page || "1");
     this.orderUp = query["orderUp"] == "true";
     this.currentSeries.id = parseInt(this.$route.params.seriesID);
     AnimeAPI.series(this, this.currentSeries.id).then(series => {
@@ -103,7 +121,6 @@ export default class VideoView extends Vue {
       AnimeAPI.getAnime(this, parseInt(this.$route.params.animeID)).then(
         anime => {
           this.anime = anime;
-          document.title = `${anime.name}第${series.num}集`;
         }
       );
     });

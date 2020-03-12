@@ -5,3 +5,4 @@ declare module '*.vue' {
 
 declare module 'videojs-contrib-hls';
 declare module 'vue-video-player';
+

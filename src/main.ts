@@ -11,8 +11,11 @@ import VueVideoPlayer from 'vue-video-player'
 import 'vue-video-player/src/custom-theme.css'
 import 'video.js/dist/video-js.css'
 import hls from 'videojs-contrib-hls'
+import VueMeta from 'vue-meta'
 
-
+Vue.use(VueMeta, {
+  refreshOnceOnNavigation: true
+})
 Vue.use(hls)
 Vue.use(VueVideoPlayer)
 Vue.use(ElementUI);
