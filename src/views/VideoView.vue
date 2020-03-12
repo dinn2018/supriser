@@ -99,20 +99,17 @@ export default class VideoView extends Vue {
     this.currentSeries.id = parseInt(this.$route.params.seriesID);
     AnimeAPI.series(this, this.currentSeries.id).then(series => {
       this.currentSeries = series;
+      AnimeAPI.getAnime(this, parseInt(this.$route.params.animeID)).then(
+        anime => {
+          this.anime = anime;
+          document.title = `${anime.name}第${series.num}集`;
+        }
+      );
     });
-    AnimeAPI.getAnime(this, parseInt(this.$route.params.animeID)).then(
-      anime => {
-        this.anime = anime;
-        document.title = anime.name;
-      }
-    );
     this.getSeriesList();
   }
 
   compute(seriesNum: number) {
-    if (seriesNum.toString().length < 2) {
-      return `0${seriesNum}`;
-    }
     return seriesNum;
   }
 
