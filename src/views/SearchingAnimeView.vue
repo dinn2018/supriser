@@ -29,6 +29,7 @@
         :page-size="pageSize"
         :pager-count="7"
         :current-page="pageNum"
+        layout="prev, pager, next"
         @current-change="onPageChanged"
         :total="total"
       ></el-pagination>

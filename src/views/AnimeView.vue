@@ -74,40 +74,6 @@
                 </el-row>
               </el-col>
             </el-row>
-            <!-- <el-row style="margin-top:2rem;margin-bottom:2rem" type="flex">
-              <el-col :lg="1" :sm="2" :md="2" :xs="4">
-                <span class="category">地区</span>
-              </el-col>
-              <el-col :lg="1" :sm="2" :md="2" :xs="4">
-                <span
-                  v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 0}"
-                  @click="selectRegion('')"
-                >全部</span>
-              </el-col>
-              <el-col :lg="12" :sm="20" :md="20" :xs="21">
-                <el-row type="flex">
-                  <el-col
-                    :lg="2"
-                    :xs="5"
-                    :md="2"
-                    :sm="2"
-                    v-for="(region,i) in regions"
-                    v-bind:key="`${region}-${i}`"
-                  >
-                    <span
-                      v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 1 && selectedRegions[0] == region}"
-                      @click="selectRegion(region)"
-                    >{{region}}</span>
-                  </el-col>
-                  <el-col :xs="5" :sm="2" :md="2" :lg="2">
-                    <span
-                      v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length>1}"
-                      @click="selectRegion('other')"
-                    >其他</span>
-                  </el-col>
-                </el-row>
-              </el-col>
-            </el-row>-->
           </el-col>
         </el-card>
       </el-col>
@@ -137,6 +103,7 @@
         :page-size="pageSize"
         :pager-count="7"
         :current-page="pageNum"
+        layout="prev, pager, next"
         @current-change="onPageChanged"
         :total="total"
       ></el-pagination>
