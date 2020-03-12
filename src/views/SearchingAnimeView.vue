@@ -55,7 +55,8 @@ export default class SearchingAnimeView extends Vue {
 
   @Watch("$route")
   async onRouteChanged(route: Route) {
-    this.pageNum = parseInt(route.params.pageNum);
+    const page = route.params.pageNum;
+    this.pageNum = parseInt(page || '1');
     this.keyword = (route.query as Dictionary<string>)["keyword"];
     document.title = this.keyword;
     this.getSearchingAnimes();

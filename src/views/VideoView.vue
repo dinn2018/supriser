@@ -94,7 +94,8 @@ export default class VideoView extends Vue {
 
   async created() {
     const query = this.$route.query as Dictionary<string>;
-    this.pageNum = parseInt(query["pageNum"] as string);
+    const page = query["pageNum"] as string;
+    this.pageNum = parseInt(page || '1');
     this.orderUp = query["orderUp"] == "true";
     this.currentSeries.id = parseInt(this.$route.params.seriesID);
     AnimeAPI.series(this, this.currentSeries.id).then(series => {

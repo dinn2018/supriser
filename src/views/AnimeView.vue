@@ -130,7 +130,8 @@ export default class AnimeView extends Vue {
 
   @Watch("$route")
   async onRouteChanged(route: Route) {
-    this.pageNum = parseInt(route.params.pageNum);
+    const page = route.params.pageNum;
+    this.pageNum = parseInt(page || '1');
     const query = this.$route.query as Dictionary<string>;
     try {
       this.selectedPostYears = JSON.parse(query["postYears"]);
