@@ -7,20 +7,21 @@
             <el-row>动漫</el-row>
             <el-divider></el-divider>
             <el-row type="flex" justify="left">
-              <el-col :lg="1" :sm="2" :xs="4">
+              <el-col :lg="1" :sm="2" :md="2" :xs="3">
                 <span class="category">年份</span>
               </el-col>
-              <el-col :lg="1" :sm="2" :xs="4">
-                <span
-                  v-bind:class="{'hover-properties':1,'active-properties':selectedPostYears.length == 0}"
-                  @click="selectPostYear('')"
-                >全部</span>
-              </el-col>
-              <el-col :lg="22" :sm="20" :xs="21">
-                <el-row type="flex">
+              <el-col :xs="21" :sm="20" :md="20" :lg="14">
+                <el-row>
+                  <el-col :xs="4" :sm="2" :md="2" :lg="2">
+                    <span
+                      v-bind:class="{'hover-properties':1,'active-properties':selectedPostYears.length == 0}"
+                      @click="selectPostYear('')"
+                    >全部</span>
+                  </el-col>
                   <el-col
-                    :lg="1"
-                    :xs="5"
+                    :lg="2"
+                    :xs="4"
+                    :md="2"
                     :sm="2"
                     v-for="(postYear,i) in postYears"
                     v-bind:key="`${postYear}-${i}`"
@@ -30,7 +31,7 @@
                       @click="selectPostYear(postYear)"
                     >{{postYear}}</span>
                   </el-col>
-                  <el-col :lg="1" :xs="5" :sm="2">
+                  <el-col :xs="5" :sm="2" :md="2" :lg="2">
                     <span
                       v-bind:class="{'hover-properties':1,'active-properties':selectedPostYears.length>1}"
                       @click="selectPostYear('other')"
@@ -39,21 +40,22 @@
                 </el-row>
               </el-col>
             </el-row>
-            <el-row style="margin-top:2rem;margin-bottom:2rem" type="flex">
-              <el-col :lg="1" :sm="2" :xs="4">
+            <el-row style="margin-top:2rem;margin-bottom:2rem" justify="left">
+              <el-col :lg="1" :sm="2" :md="2" :xs="3">
                 <span class="category">地区</span>
               </el-col>
-              <el-col :lg="1" :sm="2" :xs="4">
-                <span
-                  v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 0}"
-                  @click="selectRegion('')"
-                >全部</span>
-              </el-col>
-              <el-col :lg="22" :sm="20" :xs="21">
-                <el-row type="flex">
+              <el-col :xs="21" :sm="20" :md="20" :lg="14">
+                <el-row>
+                  <el-col :xs="4" :sm="2" :md="2" :lg="2">
+                    <span
+                      v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 0}"
+                      @click="selectRegion('')"
+                    >全部</span>
+                  </el-col>
                   <el-col
-                    :lg="1"
-                    :xs="5"
+                    :lg="2"
+                    :xs="4"
+                    :md="2"
                     :sm="2"
                     v-for="(region,i) in regions"
                     v-bind:key="`${region}-${i}`"
@@ -63,7 +65,7 @@
                       @click="selectRegion(region)"
                     >{{region}}</span>
                   </el-col>
-                  <el-col :lg="1" :xs="5" :sm="2">
+                  <el-col :xs="5" :sm="2" :md="2" :lg="2">
                     <span
                       v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length>1}"
                       @click="selectRegion('other')"
@@ -72,6 +74,40 @@
                 </el-row>
               </el-col>
             </el-row>
+            <!-- <el-row style="margin-top:2rem;margin-bottom:2rem" type="flex">
+              <el-col :lg="1" :sm="2" :md="2" :xs="4">
+                <span class="category">地区</span>
+              </el-col>
+              <el-col :lg="1" :sm="2" :md="2" :xs="4">
+                <span
+                  v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 0}"
+                  @click="selectRegion('')"
+                >全部</span>
+              </el-col>
+              <el-col :lg="12" :sm="20" :md="20" :xs="21">
+                <el-row type="flex">
+                  <el-col
+                    :lg="2"
+                    :xs="5"
+                    :md="2"
+                    :sm="2"
+                    v-for="(region,i) in regions"
+                    v-bind:key="`${region}-${i}`"
+                  >
+                    <span
+                      v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length == 1 && selectedRegions[0] == region}"
+                      @click="selectRegion(region)"
+                    >{{region}}</span>
+                  </el-col>
+                  <el-col :xs="5" :sm="2" :md="2" :lg="2">
+                    <span
+                      v-bind:class="{'hover-properties':1,'active-properties':selectedRegions.length>1}"
+                      @click="selectRegion('other')"
+                    >其他</span>
+                  </el-col>
+                </el-row>
+              </el-col>
+            </el-row>-->
           </el-col>
         </el-card>
       </el-col>
@@ -253,7 +289,7 @@ export default class AnimeView extends Vue {
 <style lang="scss">
 .category {
   color: #cccccc;
-  padding: 1em;
+  padding: 5px;
   border-radius: 0.1rem;
   font-size: 0.7rem;
 }
@@ -264,14 +300,16 @@ export default class AnimeView extends Vue {
 
 .hover-properties {
   cursor: pointer;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .active-properties {
   background-color: #11ad1e;
   border-radius: 5px;
   color: white;
-  padding: 10px;
+  padding: 5px;
   font-size: 0.6rem;
 }
 </style>
