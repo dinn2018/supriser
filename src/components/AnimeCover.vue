@@ -5,7 +5,7 @@
         <Poster
           :url="url"
           @focus="focusImage"
-          style="border-radius:10px; width:100%; height:230px; margin-bottom:8px;"
+          style="border-radius:10px; width:100%; height:200px;max-width:200px; margin-bottom:8px;"
         ></Poster>
       </el-row>
       <el-row>

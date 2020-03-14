@@ -86,7 +86,7 @@
               v-for="(anime,i) in animes"
               v-bind:key="`${anime.name}-${i}`"
               :xs="12"
-              :sm="6"
+              :sm="8"
               :md="6"
               :lg="4"
               :xl="2"
